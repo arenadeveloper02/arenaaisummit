@@ -46,30 +46,37 @@ export default function Header() {
     return () => observer.disconnect()
   }, [])
 
+  const light = !scrolled && !open
+
   return (
     <header className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${scrolled || open ? 'border-slate-200 bg-white/90 backdrop-blur-lg' : 'border-transparent bg-transparent'}`}>
       <div className="container-max flex h-16 items-center justify-between">
-        <a href="#home" className="text-lg font-extrabold tracking-tight text-slate-900">
-          ARENA <span className="gradient-text">AI Summit</span> <span className="text-cyan-600">2026</span>
+        <a href="#home" className={`text-lg font-extrabold tracking-tight ${light ? 'text-white' : 'text-slate-900'}`}>
+          ARENA <span className="gradient-text">AI Summit</span> <span className={light ? 'text-cyan-300' : 'text-cyan-600'}>2026</span>
         </a>
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
-          {navigationItems.map((item) => (
-            <a
-              key={item.id}
-              href={item.href}
-              className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${activeId === item.href.replace('#', '') ? 'text-cyan-600' : 'text-slate-600 hover:text-slate-900'}`}
-              aria-current={activeId === item.href.replace('#', '') ? 'true' : undefined}
-            >
-              {item.label}
-            </a>
-          ))}
+          {navigationItems.map((item) => {
+            const isActive = activeId === item.href.replace('#', '')
+            const activeClass = light ? 'text-cyan-300' : 'text-cyan-600'
+            const idleClass = light ? 'text-slate-200 hover:text-white' : 'text-slate-600 hover:text-slate-900'
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${isActive ? activeClass : idleClass}`}
+                aria-current={isActive ? 'true' : undefined}
+              >
+                {item.label}
+              </a>
+            )
+          })}
           <a href="#tickets" className="ml-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-purple-300/40 transition hover:opacity-90">
             Get Tickets
           </a>
         </nav>
         <button
           type="button"
-          className="rounded-lg p-2 text-slate-700 transition hover:bg-slate-100 md:hidden"
+          className={`rounded-lg p-2 transition md:hidden ${light ? 'text-white hover:bg-white/10' : 'text-slate-700 hover:bg-slate-100'}`}
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
