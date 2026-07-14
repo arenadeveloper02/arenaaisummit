@@ -1,13 +1,15 @@
 "use client"
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Globe, Linkedin } from 'lucide-react'
 import { speakers } from '@/lib/data'
 import SectionHeading from '@/components/SectionHeading'
 
 export default function Speakers() {
   const [expanded, setExpanded] = useState(false)
-  const visible = expanded ? speakers : speakers.filter((s) => s.featured)
+  const hasHidden = speakers.some((s) => !s.featured)
+  const visible = expanded || !hasHidden ? speakers : speakers.filter((s) => s.featured)
 
   return (
     <section id="speakers" className="section">
@@ -15,15 +17,25 @@ export default function Speakers() {
         <SectionHeading
           label="Featured Speakers"
           title="Learn From the People Building the Future"
-          description="Researchers, founders, operators, and investors sharing what actually works in modern AI. Speaker profiles shown here are illustrative examples for this demonstration site."
+          description="Researchers, founders, operators, and investors sharing what actually works in modern AI."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {visible.map((speaker) => (
             <article key={speaker.id} className="glass group overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1 hover:border-cyan-300">
-              <div className={`relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br ${speaker.gradient}`}>
-                <span aria-hidden="true" className="select-none text-5xl font-extrabold text-white/90 transition-transform duration-500 group-hover:scale-110">
-                  {speaker.initials}
-                </span>
+              <div className={`relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br ${speaker.gradient}`}>
+                {speaker.image ? (
+                  <Image
+                    src={speaker.image}
+                    alt={`Portrait of ${speaker.name}`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                ) : (
+                  <span aria-hidden="true" className="select-none text-5xl font-extrabold text-white/90 transition-transform duration-500 group-hover:scale-110">
+                    {speaker.initials}
+                  </span>
+                )}
               </div>
               <div className="p-5">
                 <h3 className="text-lg font-bold text-slate-900">{speaker.name}</h3>
@@ -54,16 +66,18 @@ export default function Speakers() {
             </article>
           ))}
         </div>
-        <div className="mt-10 text-center">
-          <button
-            type="button"
-            onClick={() => setExpanded((v) => !v)}
-            aria-expanded={expanded}
-            className="glass rounded-full px-8 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
-          >
-            {expanded ? 'Show Featured Speakers' : 'View All Speakers'}
-          </button>
-        </div>
+        {hasHidden ? (
+          <div className="mt-10 text-center">
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+              className="glass rounded-full px-8 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+            >
+              {expanded ? 'Show Featured Speakers' : 'View All Speakers'}
+            </button>
+          </div>
+        ) : null}
       </div>
     </section>
   )

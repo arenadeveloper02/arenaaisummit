@@ -20,6 +20,7 @@ export interface Speaker {
   linkedin: string
   website: string
   featured: boolean
+  image?: string
 }
 
 export type SessionType =
