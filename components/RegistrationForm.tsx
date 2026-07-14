@@ -27,9 +27,9 @@ const registrationSchema = z.object({
 type RegistrationFormValues = z.infer<typeof registrationSchema>
 
 const inputClass =
-  'mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 transition focus:border-cyan-400 focus:outline-none'
-const labelClass = 'block text-sm font-medium text-slate-200'
-const errorClass = 'mt-1 text-sm text-rose-400'
+  'mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-cyan-500 focus:outline-none'
+const labelClass = 'block text-sm font-medium text-slate-700'
+const errorClass = 'mt-1 text-sm text-rose-600'
 
 export default function RegistrationForm() {
   const [serverError, setServerError] = useState<string | null>(null)
@@ -94,26 +94,26 @@ export default function RegistrationForm() {
       <section id="register" className="section">
         <div className="container-max max-w-2xl">
           <div className="glass rounded-2xl p-8 text-center" role="status" aria-live="polite">
-            <h2 className="text-2xl font-extrabold text-white">Registration Received</h2>
-            <p className="mt-4 text-sm leading-relaxed text-slate-300">
+            <h2 className="text-2xl font-extrabold text-slate-900">Registration Received</h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-600">
               Thank you for registering your interest in ARENA AI Summit 2026. Our event team will contact you with ticket confirmation and payment details.
             </p>
             <dl className="mx-auto mt-6 max-w-sm space-y-2 text-left text-sm">
               <div className="flex justify-between gap-4">
-                <dt className="text-slate-400">Name</dt>
-                <dd className="font-medium text-white">{submitted.fullName}</dd>
+                <dt className="text-slate-500">Name</dt>
+                <dd className="font-medium text-slate-900">{submitted.fullName}</dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt className="text-slate-400">Email</dt>
-                <dd className="font-medium text-white">{submitted.email}</dd>
+                <dt className="text-slate-500">Email</dt>
+                <dd className="font-medium text-slate-900">{submitted.email}</dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt className="text-slate-400">Ticket</dt>
-                <dd className="font-medium text-cyan-300">{plan ? plan.name : submitted.ticketType}</dd>
+                <dt className="text-slate-500">Ticket</dt>
+                <dd className="font-medium text-cyan-600">{plan ? plan.name : submitted.ticketType}</dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt className="text-slate-400">Quantity</dt>
-                <dd className="font-medium text-white">{submitted.quantity}</dd>
+                <dt className="text-slate-500">Quantity</dt>
+                <dd className="font-medium text-slate-900">{submitted.quantity}</dd>
               </div>
             </dl>
             <button
@@ -173,7 +173,7 @@ export default function RegistrationForm() {
               <label htmlFor="reg-ticketType" className={labelClass}>Ticket type</label>
               <select id="reg-ticketType" className={inputClass} aria-invalid={errors.ticketType ? 'true' : 'false'} aria-describedby={errors.ticketType ? 'reg-ticketType-error' : undefined} {...register('ticketType')}>
                 {pricingPlans.map((plan) => (
-                  <option key={plan.id} value={plan.id} className="bg-[#0B1020]">
+                  <option key={plan.id} value={plan.id}>
                     {plan.name} — {plan.price}
                   </option>
                 ))}
@@ -184,7 +184,7 @@ export default function RegistrationForm() {
               <label htmlFor="reg-quantity" className={labelClass}>Number of tickets</label>
               <select id="reg-quantity" className={inputClass} aria-invalid={errors.quantity ? 'true' : 'false'} aria-describedby={errors.quantity ? 'reg-quantity-error' : undefined} {...register('quantity', { valueAsNumber: true })}>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-                  <option key={`qty-${n}`} value={n} className="bg-[#0B1020]">
+                  <option key={`qty-${n}`} value={n}>
                     {n}
                   </option>
                 ))}
@@ -192,27 +192,30 @@ export default function RegistrationForm() {
               {errors.quantity ? <p id="reg-quantity-error" role="alert" className={errorClass}>{errors.quantity.message}</p> : null}
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="reg-dietary" className={labelClass}>Dietary requirements <span className="text-slate-500">(optional)</span></label>
+              <label htmlFor="reg-dietary" className={labelClass}>Dietary requirements <span className="text-slate-400">(optional)</span></label>
               <input id="reg-dietary" type="text" placeholder="e.g. vegetarian, vegan, allergies" className={inputClass} {...register('dietary')} />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="reg-consent" className="flex items-start gap-3 text-sm text-slate-300">
-                <input id="reg-consent" type="checkbox" className="mt-0.5 h-4 w-4 rounded border-white/20 bg-white/5 accent-purple-500" aria-invalid={errors.consent ? 'true' : 'false'} aria-describedby={errors.consent ? 'reg-consent-error' : undefined} {...register('consent')} />
+              <label htmlFor="reg-consent" className="flex items-start gap-3 text-sm text-slate-600">
+                <input id="reg-consent" type="checkbox" className="mt-0.5 h-4 w-4 rounded border-slate-300 accent-purple-600" aria-invalid={errors.consent ? 'true' : 'false'} aria-describedby={errors.consent ? 'reg-consent-error' : undefined} {...register('consent')} />
                 <span>I consent to the ARENA AI Summit team contacting me about my registration and event updates.</span>
               </label>
               {errors.consent ? <p id="reg-consent-error" role="alert" className={errorClass}>{errors.consent.message}</p> : null}
             </div>
           </div>
           <div aria-live="polite">
-            {serverError ? <p role="alert" className="mt-5 rounded-lg border border-rose-400/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">{serverError}</p> : null}
+            {serverError ? <p role="alert" className="mt-5 rounded-lg border border-rose-300 bg-rose-50 px-4 py-3 text-sm text-rose-700">{serverError}</p> : null}
           </div>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="mt-6 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-900/40 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-6 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-300/50 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? 'Submitting registration…' : 'Complete Registration'}
           </button>
+          <p className="mt-4 text-center text-xs text-slate-400">
+            Your details are stored securely and used only to process your registration.
+          </p>
         </form>
       </div>
     </section>

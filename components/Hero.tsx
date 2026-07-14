@@ -1,9 +1,13 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import { Calendar, MapPin } from 'lucide-react'
 
 const TARGET_TIME = new Date('2026-09-17T09:00:00+05:30').getTime()
+
+const HERO_IMAGE =
+  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=2400&q=80'
 
 interface HeroStat {
   id: string
@@ -22,8 +26,8 @@ const heroStats: HeroStat[] = [
 function CountdownUnit({ value, label }: { value: string; label: string }) {
   return (
     <div className="glass flex flex-col items-center rounded-xl px-2 py-3 sm:px-4">
-      <span className="text-2xl font-extrabold tabular-nums text-white sm:text-3xl">{value}</span>
-      <span className="mt-1 text-xs uppercase tracking-wider text-slate-400">{label}</span>
+      <span className="text-2xl font-extrabold tabular-nums text-slate-900 sm:text-3xl">{value}</span>
+      <span className="mt-1 text-xs uppercase tracking-wider text-slate-500">{label}</span>
     </div>
   )
 }
@@ -64,11 +68,11 @@ function StatItem({ stat }: { stat: HeroStat }) {
 
   return (
     <div ref={ref} className="glass rounded-xl p-4 text-center">
-      <p className="text-2xl font-extrabold text-white sm:text-3xl">
+      <p className="text-2xl font-extrabold text-slate-900 sm:text-3xl">
         {display.toLocaleString('en-IN')}
-        <span className="text-cyan-300">{stat.suffix}</span>
+        <span className="text-cyan-600">{stat.suffix}</span>
       </p>
-      <p className="mt-1 text-sm text-slate-400">{stat.label}</p>
+      <p className="mt-1 text-sm text-slate-500">{stat.label}</p>
     </div>
   )
 }
@@ -98,46 +102,51 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative overflow-hidden pb-20 pt-32 md:pb-28 md:pt-40">
+    <section id="home" className="relative flex min-h-screen flex-col justify-center overflow-hidden pb-16 pt-24">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:56px_56px]" />
-        <div className="absolute -top-40 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-blue-600/20 blur-3xl" />
-        <div className="absolute right-[-160px] top-40 h-80 w-80 rounded-full bg-purple-600/20 blur-3xl" />
-        <div className="absolute bottom-0 left-[-120px] h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
+        <Image
+          src={HERO_IMAGE}
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/85 to-slate-50" />
       </div>
       <div className="container-max relative">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium text-cyan-200">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-cyan-400" />
+          <p className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium text-cyan-700">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-cyan-500" />
             September 17–18, 2026 · Bengaluru
           </p>
-          <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             Shape the Future of <span className="gradient-text">Artificial Intelligence</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
             Join the world&rsquo;s leading AI researchers, founders, builders, and business leaders for two transformative days of ideas, innovation, and meaningful connections.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="#tickets" className="w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg shadow-purple-900/40 transition hover:opacity-90 sm:w-auto">
+            <a href="#tickets" className="w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg shadow-purple-300/50 transition hover:opacity-90 sm:w-auto">
               Reserve Your Seat
             </a>
-            <a href="#agenda" className="glass w-full rounded-full px-8 py-3.5 text-center text-base font-semibold text-white transition hover:bg-white/10 sm:w-auto">
+            <a href="#agenda" className="glass w-full rounded-full px-8 py-3.5 text-center text-base font-semibold text-slate-800 transition hover:bg-slate-100 sm:w-auto">
               Explore the Agenda
             </a>
           </div>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 text-sm text-slate-300 sm:flex-row sm:gap-8">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 text-sm text-slate-600 sm:flex-row sm:gap-8">
             <p className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-cyan-300" aria-hidden="true" />
+              <Calendar className="h-4 w-4 text-cyan-600" aria-hidden="true" />
               September 17–18, 2026
             </p>
             <p className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-cyan-300" aria-hidden="true" />
+              <MapPin className="h-4 w-4 text-cyan-600" aria-hidden="true" />
               Bengaluru International Convention Centre, Bengaluru, India
             </p>
           </div>
           <div className="mt-10" aria-live="polite">
             {live ? (
-              <p className="glass inline-flex rounded-2xl px-6 py-4 text-lg font-semibold text-cyan-300">
+              <p className="glass inline-flex rounded-2xl px-6 py-4 text-lg font-semibold text-cyan-700">
                 ARENA AI Summit 2026 is now live.
               </p>
             ) : (

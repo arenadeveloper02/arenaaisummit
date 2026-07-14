@@ -11,11 +11,11 @@ section[id] {
 }
 
 body {
-  @apply bg-[#05070F] text-slate-200 antialiased;
+  @apply bg-slate-50 text-slate-700 antialiased;
 }
 
 :focus-visible {
-  outline: 2px solid #22d3ee;
+  outline: 2px solid #0891b2;
   outline-offset: 2px;
   border-radius: 0.25rem;
 }
@@ -30,21 +30,22 @@ body {
   }
 
   .glass {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
 
   .gradient-text {
-    background: linear-gradient(90deg, #60a5fa, #22d3ee, #a78bfa);
+    background: linear-gradient(90deg, #2563eb, #0891b2, #7c3aed);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
   .skip-link {
-    @apply absolute left-[-9999px] top-2 z-[100] rounded-full bg-cyan-500 px-5 py-2.5 text-sm font-semibold text-slate-950;
+    @apply absolute left-[-9999px] top-2 z-[100] rounded-full bg-cyan-600 px-5 py-2.5 text-sm font-semibold text-white;
   }
 
   .skip-link:focus {

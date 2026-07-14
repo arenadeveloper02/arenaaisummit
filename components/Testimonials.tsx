@@ -13,13 +13,13 @@ export default function Testimonials() {
         />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {testimonials.map((testimonial) => (
-            <figure key={testimonial.id} className="glass flex flex-col rounded-2xl p-6 transition duration-300 hover:border-cyan-400/30">
+            <figure key={testimonial.id} className="glass flex flex-col rounded-2xl p-6 transition duration-300 hover:border-cyan-300">
               <div className="flex gap-1" role="img" aria-label="Rated five out of five stars">
                 {['s1', 's2', 's3', 's4', 's5'].map((starId) => (
                   <Star key={`${testimonial.id}-${starId}`} className="h-4 w-4 fill-amber-400 text-amber-400" aria-hidden="true" />
                 ))}
               </div>
-              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-200">
+              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-6 flex items-center gap-3">
@@ -27,8 +27,8 @@ export default function Testimonials() {
                   {testimonial.initials}
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-white">{testimonial.name}</p>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-sm font-semibold text-slate-900">{testimonial.name}</p>
+                  <p className="text-xs text-slate-500">
                     {testimonial.role}, {testimonial.company}
                   </p>
                 </div>

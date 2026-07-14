@@ -74,14 +74,14 @@ export default function Footer() {
   const active = policy ? policies[policy] : null
 
   return (
-    <footer className="border-t border-white/10 bg-[#04060C]">
+    <footer className="border-t border-slate-200 bg-white">
       <div className="container-max py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="text-lg font-extrabold tracking-tight text-white">
-              ARENA <span className="gradient-text">AI Summit</span> <span className="text-cyan-300">2026</span>
+            <p className="text-lg font-extrabold tracking-tight text-slate-900">
+              ARENA <span className="gradient-text">AI Summit</span> <span className="text-cyan-600">2026</span>
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-400">
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
               Where Intelligence Meets Innovation. Two days of keynotes, workshops, and networking with global AI leaders in Bengaluru — September 17–18, 2026.
             </p>
             <div className="mt-5 flex gap-2">
@@ -94,7 +94,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${social.label} (opens in a new tab)`}
-                    className="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-white"
+                    className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
                   >
                     <Icon className="h-4 w-4" aria-hidden="true" />
                   </a>
@@ -103,27 +103,27 @@ export default function Footer() {
             </div>
           </div>
           <nav aria-label="Footer navigation">
-            <p className="text-sm font-semibold uppercase tracking-wider text-slate-300">Navigate</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-slate-900">Navigate</p>
             <ul className="mt-4 space-y-2">
               {navigationItems.map((item) => (
                 <li key={`footer-${item.id}`}>
-                  <a href={item.href} className="text-sm text-slate-400 transition hover:text-cyan-300">{item.label}</a>
+                  <a href={item.href} className="text-sm text-slate-600 transition hover:text-cyan-700">{item.label}</a>
                 </li>
               ))}
               <li>
-                <a href="#register" className="text-sm font-medium text-cyan-300 transition hover:text-cyan-200">Register Now</a>
+                <a href="#register" className="text-sm font-medium text-cyan-600 transition hover:text-cyan-700">Register Now</a>
               </li>
             </ul>
           </nav>
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wider text-slate-300">Legal</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-slate-900">Legal</p>
             <ul className="mt-4 space-y-2">
               {policyLinks.map((link) => (
                 <li key={link.key}>
                   <button
                     type="button"
                     onClick={() => setPolicy(link.key)}
-                    className="text-left text-sm text-slate-400 transition hover:text-cyan-300"
+                    className="text-left text-sm text-slate-600 transition hover:text-cyan-700"
                   >
                     {link.label}
                   </button>
@@ -132,55 +132,55 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wider text-slate-300">Contact</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-slate-900">Contact</p>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="mailto:hello@aisummit2026.example" className="text-sm text-slate-400 transition hover:text-cyan-300">hello@aisummit2026.example</a>
+                <a href="mailto:hello@aisummit2026.example" className="text-sm text-slate-600 transition hover:text-cyan-700">hello@aisummit2026.example</a>
               </li>
               <li>
-                <a href="mailto:partners@aisummit2026.example" className="text-sm text-slate-400 transition hover:text-cyan-300">partners@aisummit2026.example</a>
+                <a href="mailto:partners@aisummit2026.example" className="text-sm text-slate-600 transition hover:text-cyan-700">partners@aisummit2026.example</a>
               </li>
-              <li className="text-sm text-slate-400">Bengaluru, India</li>
+              <li className="text-sm text-slate-600">Bengaluru, India</li>
             </ul>
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="glass mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="glass mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
             >
               <ArrowUp className="h-4 w-4" aria-hidden="true" />
               Back to top
             </button>
           </div>
         </div>
-        <p className="mt-12 border-t border-white/5 pt-6 text-center text-sm text-slate-500">
+        <p className="mt-12 border-t border-slate-200 pt-6 text-center text-sm text-slate-500">
           © 2026 ARENA AI Summit. All rights reserved.
         </p>
       </div>
       {active ? (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-4"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/40 p-4"
           role="dialog"
           aria-modal="true"
           aria-labelledby="policy-title"
           onClick={() => setPolicy(null)}
         >
           <div
-            className="max-h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 bg-[#0B1020] p-6 shadow-2xl"
+            className="max-h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
-              <h2 id="policy-title" className="text-xl font-bold text-white">{active.title}</h2>
+              <h2 id="policy-title" className="text-xl font-bold text-slate-900">{active.title}</h2>
               <button
                 type="button"
                 aria-label="Close dialog"
                 onClick={() => setPolicy(null)}
-                className="rounded-lg p-2 text-slate-300 transition hover:bg-white/10"
+                className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
             {active.paragraphs.map((paragraph, index) => (
-              <p key={`policy-paragraph-${index}`} className="mt-4 text-sm leading-relaxed text-slate-300">
+              <p key={`policy-paragraph-${index}`} className="mt-4 text-sm leading-relaxed text-slate-600">
                 {paragraph}
               </p>
             ))}
